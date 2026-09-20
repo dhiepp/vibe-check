@@ -10,7 +10,7 @@
 - Delete a section only when its rule could never apply to this project.
 - Then delete this block, leaving the line below in its place.
 
-> **Keep this file current.** When the repo changes and something here goes stale, fix it in the same change. Keep edits short — this file is read in full on every task.
+> **Keep this file current, not busy.** It is meant to sit still. Edit it only when a change to the repo invalidates something written here. No progress notes, no decision history, no record of what was done. Keep edits short; this file is read in full on every task.
 
 ---
 

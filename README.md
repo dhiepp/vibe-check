@@ -45,8 +45,8 @@ claims.**
 
 3. Delete the setup block once done, and keep the line below it:
 
-   > **Keep this file current.** When the repo changes and something here goes
-   > stale, fix it in the same change.
+   > **Keep this file current, not busy.** It is meant to sit still. Edit it
+   > only when a change to the repo invalidates something written here.
 
 4. Leave the rest intact. Filling in the blanks is the whole job — the standing
    rules are the point of the template, and an agent rewriting them in its own
@@ -74,3 +74,7 @@ ln -s AGENTS.md CLAUDE.md     # or .cursorrules, .github/copilot-instructions.md
   means you create one when the work calls for it, not that the rule is void.
 - Stale instructions are worse than none. If a command in there no longer runs,
   fix it in the same change that broke it.
+- It is a standing contract, not a logbook. It changes when the repo invalidates
+  something in it, and at no other time — progress notes, decision history and
+  "what I did" belong in commit messages. An agent that appends to it every task
+  is turning your house rules into scrollback.
