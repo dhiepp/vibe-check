@@ -18,12 +18,12 @@
 | Item | Value |
 |---|---|
 | Name | `<FILL-IN>` |
-| Purpose | `<FILL-IN: what it does, for whom>` |
+| Purpose | `<FILL-IN>` |
 | Language(s) | `<FILL-IN>` |
 | Framework(s) | `<FILL-IN>` |
 | Runtime / toolchain | `<FILL-IN>` |
 | Datastore | `<FILL-IN>` |
-| Package manager | `<FILL-IN>` — use only this one; never add a second lockfile |
+| Package manager | `<FILL-IN>` |
 
 ### Layout
 
@@ -31,7 +31,7 @@
 
 ### Commands
 
-One row per command this project actually has — add, drop and rename rows to match it. Cover whatever exists of: install, run, build, test (whole suite and single file), lint, format, type-check, migrations, and anything else needed daily. Run from the repository root, and record exact invocations, not approximations. Where a tool is genuinely absent, say what to verify with instead rather than leaving the row out silently.
+One row per command this project actually has — add, drop and rename rows to match it. Cover whatever exists of: install, run, build, test, lint, format, type-check, migrations, and anything else needed daily. Run from the repository root, and record exact invocations, not approximations.
 
 | Task | Command |
 |---|---|
@@ -95,8 +95,6 @@ Server-side configuration. Never commit a `.env`.
 - Where tests exist: a bug fix starts with a failing one, names describe behaviour, one concern each, no logic in tests.
 - Prefer real implementations; mock only true external boundaries (network, clock, filesystem).
 - Never weaken or delete a test to make it pass. If a test is wrong, say so.
-
-`<FILL-IN: rules that differ from what the stack would lead an agent to assume — import aliases, formatter settings to match by hand, framework-version gotchas, which library a familiar-looking abstraction is actually built on.>`
 
 ---
 
