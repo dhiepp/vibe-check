@@ -77,10 +77,7 @@ Server-side configuration. Never commit a `.env`.
 
 ### Structure
 
-- Small functions, small files. Split along responsibility lines.
-- Early returns over nesting.
-- Immutable by default.
-- No magic numbers or strings.
+- Small functions and files, split along responsibility lines. Early returns over nesting. Immutable by default. No magic numbers or strings.
 - Validate at system boundaries (user input, external APIs, files); trust internal code and the type system elsewhere. No defensive try/catch, and never swallow an error.
 - No dead code, unused imports, or unattributed TODOs.
 
@@ -118,12 +115,9 @@ Server-side configuration. Never commit a `.env`.
 ### General
 
 - Respect SOLID.
-
-- Consistency beats local optimality. Follow established patterns; if one seems wrong, raise it rather than silently diverging.
-- No speculative abstraction — wait for the third concrete use. Three similar lines beat a premature helper.
-- Don't design for hypothetical requirements.
-- Treat external input as hostile: parameterised queries, escaped output, validated schemas, least privilege.
-- Config and secrets come from the environment. Never source, never committed.
+- Consistency beats local optimality: follow established patterns, and raise one that seems wrong rather than silently diverging.
+- No speculative abstraction — wait for the third concrete use, and don't design for hypothetical requirements. Three similar lines beat a premature helper.
+- Treat external input as hostile: parameterised queries, escaped output, validated schemas, least privilege. Config and secrets come from the environment, never source.
 
 ---
 
@@ -131,31 +125,26 @@ Server-side configuration. Never commit a `.env`.
 
 ### Think before coding
 
-1. **Understand the goal.** State what "done" means in one sentence before touching anything — as something checkable, not a description. "Add validation" becomes "invalid input is rejected, and I can point at the test or the run that shows it".
-2. **Don't hide confusion.** If ambiguity would change the design, stop and name what's unclear; where several readings are plausible, put them to the user rather than silently picking one. Otherwise choose sensibly and say what you assumed.
+1. **Understand the goal.** State what "done" means in one checkable sentence before touching anything. "Add validation" becomes "invalid input is rejected, and I can point at the test or the run that shows it".
+2. **Don't hide confusion.** Where ambiguity would change the design, stop and name it, and put the plausible readings to the user rather than silently picking one. Otherwise choose sensibly and say what you assumed.
 3. **Read first.** Explore the relevant code, tests and docs. Never guess at an API you could look up.
-4. **Plan.** Outline steps and affected files before writing, each step paired with how you'll verify it. For large or risky changes, share the plan and wait for agreement.
+4. **Plan.** Outline steps and affected files before writing, each paired with how you'll verify it. For large or risky changes, share the plan and wait for agreement.
 
 ### Simplicity first and foremost
 
-- The simplest thing that fully solves the problem wins.
-- Boring and explicit beats clever and compact.
-- If a change grows beyond what was asked, stop and split it.
-- If it came out several times longer than it needed to be, rewrite it. Assume a senior reviewer will call it overcomplicated.
+- The simplest thing that fully solves the problem wins. Boring and explicit beats clever and compact.
+- If a change grows beyond what was asked, stop and split it. If it came out several times longer than it needed to be, rewrite it — assume a senior reviewer will call it overcomplicated.
 - If a simpler approach than the one requested exists, say so before building.
 
 ### Change only what you must
 
-- Minimal diff, touching only what the task requires.
+- Minimal diff: edit rather than rewrite, and touch only what the task requires. Every changed line should trace directly back to the request.
 - No drive-by refactors, reformatting or "while I'm here" cleanups. Mention what you spot; don't fix it uninvited.
 - No features, flags, compatibility shims or error handling beyond scope.
-- Edit; don't rewrite.
-- The test: every changed line traces directly back to the request.
 
 ### Clean up your own mess
 
-- Remove temp files, scratch scripts, debug logging and experiment code.
-- Remove imports, variables and functions that *your* change orphaned — but leave pre-existing dead code alone unless asked.
+- Remove temp files, scratch scripts, debug logging and experiment code, along with imports, variables and functions that *your* change orphaned — but leave pre-existing dead code alone unless asked.
 - Review the diff before finishing, so the tree holds only the intended change.
 - If you broke something along the way, fix it.
 
@@ -170,7 +159,6 @@ Server-side configuration. Never commit a `.env`.
 
 - Small atomic commits explaining *why*. Follow the repo's existing message style (`<FILL-IN>`).
 - Don't commit unless asked. Never push, force-push, rebase shared branches or delete branches without explicit instruction.
-- Never commit secrets, build artefacts or large binaries.
 
 ### Blast radius
 
@@ -192,10 +180,9 @@ Server-side configuration. Never commit a `.env`.
 - [ ] The goal, as stated at the start, is met
 - [ ] Only necessary files changed; diff reviewed
 - [ ] Every check the repo has passes, with no new warnings
-- [ ] New behaviour and fixed bugs are covered — by a test where there's a framework, otherwise run and observed
+- [ ] New behaviour and fixed bugs covered — by a test where there's a framework, otherwise run and observed, or explicitly flagged unverified
 - [ ] `/doc` updated if anything it describes changed
 - [ ] No temp files, debug output or leftover scaffolding
-- [ ] Behaviour actually run and observed, or explicitly flagged unverified
 
 ---
 
