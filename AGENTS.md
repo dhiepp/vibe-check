@@ -3,7 +3,8 @@
 **Setup — delete this block once you've done it.** This file ships as a template.
 
 - Fill in every `<FILL-IN>` from what you find in the repo. Ask the user when the code can't answer it; don't guess.
-- Add anything project-specific a future agent would otherwise have to rediscover.
+- Otherwise leave the file intact. Don't reword, reorder or "improve" the rules as written — filling in the blanks is the job.
+- Add anything project-specific a future agent would otherwise have to rediscover, as a new section or a clarifying line, and only where the project genuinely needs it.
 - Record what **differs from defaults**. Skip whatever an agent can assume from the stack or read from config in seconds.
 - A rule still holds when the repo doesn't have the thing yet. No `/doc` folder or no test runner doesn't void the guidance — it just means you create it, or use what's available, when the work calls for it. Never replace a rule with a note that it doesn't apply here.
 - Delete a section only when its rule could never apply to this project.

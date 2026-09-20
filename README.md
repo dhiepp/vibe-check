@@ -38,7 +38,8 @@ claims.**
 2. Fill it in. Easiest path is to let the agent do it — open the repo and ask:
 
    > Fill in every `<FILL-IN>` in AGENTS.md from this repo. Ask me anything the
-   > code can't answer. Then delete the setup block at the top.
+   > code can't answer. Leave the rest of the file as written — don't reword or
+   > restructure the rules. Then delete the setup block at the top.
 
    Do not let it guess. A wrong test command is worse than an empty row.
 
@@ -47,9 +48,13 @@ claims.**
    > **Keep this file current.** When the repo changes and something here goes
    > stale, fix it in the same change.
 
-4. Trim what will never apply, and add what is specific to your project. Record
-   what **differs from defaults** — anything the agent can read from your config
-   in seconds is noise that costs you context on every task.
+4. Leave the rest intact. Filling in the blanks is the whole job — the standing
+   rules are the point of the template, and an agent rewriting them in its own
+   words is how a house style quietly becomes generic again. Add a section or a
+   clarifying line only when the project genuinely needs one, and drop a section
+   only when its rule could never apply here. Whatever you add, record what
+   **differs from defaults** — anything the agent can read from your config in
+   seconds is noise that costs you context on every task.
 
 ## Agent compatibility
 
