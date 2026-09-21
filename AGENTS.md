@@ -6,11 +6,12 @@
 - Otherwise leave the file intact. Don't reword, reorder or "improve" the rules as written — filling in the blanks is the job.
 - Add anything project-specific a future agent would otherwise have to rediscover, as a new section or a clarifying line, and only where the project genuinely needs it.
 - Record what **differs from defaults**. Skip whatever an agent can assume from the stack or read from config in seconds.
-- A rule still holds when the repo doesn't have the thing yet. No `/doc` folder or no test runner doesn't void the guidance — it just means you create it, or use what's available, when the work calls for it. Never replace a rule with a note that it doesn't apply here.
-- Delete a section only when its rule could never apply to this project.
+- **Be concise.** Write what you fill in or add at the shortest length that stays unambiguous: one rule per line, no preamble, no rationale a reader doesn't need, nothing another line already says.
+- A rule still holds when the repo doesn't have the thing yet. No `/doc` folder or no test runner doesn't void the guidance — it just means you create it, or use what's available, when the work calls for it.
+- Delete a section only when its rule could never apply to this project. Never leave it in place with a note saying it's not applicable here.
 - Then delete this block, leaving the line below in its place.
 
-> **Keep this file current, not busy.** It is meant to sit still. Edit it only when a change to the repo invalidates something written here. No progress notes, no decision history, no record of what was done. Keep edits short; this file is read in full on every task.
+> **Keep this file current, not busy.** It is meant to sit still. Edit it only when a change to the repo invalidates something written here. Keep edits short; this file is read in full on every task.
 
 ---
 
@@ -32,14 +33,13 @@
 
 ### Commands
 
-One row per command this project actually has — add, drop and rename rows to match it. Cover whatever exists of: install, run, build, test, lint, format, type-check, migrations, and anything else needed daily. Run from the repository root, and record exact invocations, not approximations.
+One row per command this project actually has — install, run, build, test, lint, format, type-check, migrations, anything else needed daily. Exact invocations, run from the repository root.
 
 | Task | Command |
 |---|---|
 | `<FILL-IN>` | `<FILL-IN>` |
 
-- Run every check the repo has before declaring a task done. Zero new warnings.
-- The lockfile is the source of truth. Install frozen in CI and containers.
+The lockfile is the source of truth. Install frozen in CI and containers.
 
 ### Environment
 
@@ -57,10 +57,8 @@ Server-side configuration. Never commit a `.env`.
 
 ## 2. Documentation
 
-- All documentation lives in `/doc`. No README files or notes scattered elsewhere unless asked. Create the folder when the first document is needed.
-- Read the relevant docs before touching unfamiliar code.
-- When behaviour, architecture or commands change, update the affected doc in the same change. Stale docs are worse than none.
-- Don't write planning, analysis or summary documents unless asked.
+- All documentation lives in `/doc`; create the folder when the first document is needed. No READMEs, notes, planning, analysis or summary documents elsewhere unless asked.
+- Read the relevant docs before touching unfamiliar code, and update them in the same change when behaviour, architecture or commands change. Stale docs are worse than none.
 
 `<FILL-IN: docs an agent must read before working here>`
 
@@ -72,14 +70,13 @@ Server-side configuration. Never commit a `.env`.
 
 - Names must make the code self-explanatory. If you want to comment *what* something does, rename it instead.
 - One job per function, and the name says which. Booleans read as predicates. No abbreviations beyond the universal ones (`id`, `url`, `db`, `ctx`).
-- Comment only when the *why* is non-obvious: a hidden constraint or invariant, a workaround for a specific bug, behaviour that would surprise a reader, or the source of a non-trivial formula.
+- Comment only when the *why* is non-obvious: a hidden constraint or invariant, a workaround for a specific bug, behaviour that would surprise a reader, the source of a non-trivial formula.
 - Never restate the code, and never reference the current task, ticket or caller — that belongs in the commit message and rots.
-- No commented-out code. Version control remembers.
 
 ### Structure
 
 - Small functions and files, split along responsibility lines. Early returns over nesting. Immutable by default. No magic numbers or strings.
-- Validate at system boundaries (user input, external APIs, files); trust internal code and the type system elsewhere. No defensive try/catch, and never swallow an error.
+- Validate at system boundaries (user input, external APIs, files) and treat what crosses them as hostile: parameterised queries, escaped output, validated schemas, least privilege. Trust internal code and the type system elsewhere. No defensive try/catch, and never swallow an error.
 - No dead code, unused imports, or unattributed TODOs.
 
 ### Dependencies and scaffolding
@@ -103,20 +100,12 @@ Server-side configuration. Never commit a `.env`.
 
 `<FILL-IN: this project's actual architecture — the layers or modules, what each owns, and the boundaries that must not be crossed. Trace each major flow end to end, entry point → data source, naming the concrete files. Note caching, encryption and other behaviour invisible from a file listing. Link to doc/architecture.md if substantial.>`
 
-### Respect the layers
-
-- Each layer does its own job and nothing else.
-- Dependencies point inward: outer layers (UI, HTTP, CLI, persistence) depend on inner ones (application, domain), never the reverse.
-- The core stays free of framework and I/O imports, testable with no setup.
-- Cross a boundary through an explicit interface, never by reaching into another layer's internals.
+- Each layer does its own job and nothing else. Dependencies point inward: outer layers (UI, HTTP, CLI, persistence) depend on inner ones (application, domain), never the reverse.
+- The core stays free of framework and I/O imports, testable with no setup. Cross a boundary through an explicit interface, never by reaching into another layer's internals.
 - If you can't name the layer a new file belongs to in one sentence, the design isn't ready.
-
-### General
-
-- Respect SOLID.
-- Consistency beats local optimality: follow established patterns, and raise one that seems wrong rather than silently diverging.
-- No speculative abstraction — wait for the third concrete use, and don't design for hypothetical requirements. Three similar lines beat a premature helper.
-- Treat external input as hostile: parameterised queries, escaped output, validated schemas, least privilege. Config and secrets come from the environment, never source.
+- Respect SOLID, and consistency over local optimality: follow established patterns, raising one that seems wrong rather than silently diverging.
+- No speculative abstraction — wait for the third concrete use. Three similar lines beat a premature helper.
+- Config and secrets come from the environment, never source.
 
 ---
 
@@ -124,33 +113,25 @@ Server-side configuration. Never commit a `.env`.
 
 ### Think before coding
 
-1. **Understand the goal.** State what "done" means in one checkable sentence before touching anything. "Add validation" becomes "invalid input is rejected, and I can point at the test or the run that shows it".
-2. **Don't hide confusion.** Where ambiguity would change the design, stop and name it, and put the plausible readings to the user rather than silently picking one. Otherwise choose sensibly and say what you assumed.
+1. **Understand the goal.** State what "done" means in one checkable sentence before touching anything — not "add validation" but "invalid input is rejected, and I can point at the test or the run that shows it".
+2. **Don't hide confusion.** Where ambiguity would change the design, stop and put the plausible readings to the user rather than silently picking one. Otherwise choose sensibly and say what you assumed.
 3. **Read first.** Explore the relevant code, tests and docs. Never guess at an API you could look up.
-4. **Plan.** Outline steps and affected files before writing, each paired with how you'll verify it. For large or risky changes, share the plan and wait for agreement.
+4. **Plan.** Outline the steps and affected files before writing, each paired with how you'll verify it. For large or risky changes, share the plan and wait for agreement.
 
 ### Simplicity first and foremost
 
-- The simplest thing that fully solves the problem wins. Boring and explicit beats clever and compact.
+- The simplest thing that fully solves the problem wins; boring and explicit beats clever and compact. If a simpler approach than the one requested exists, say so before building.
 - If a change grows beyond what was asked, stop and split it. If it came out several times longer than it needed to be, rewrite it — assume a senior reviewer will call it overcomplicated.
-- If a simpler approach than the one requested exists, say so before building.
 
 ### Change only what you must
 
-- Minimal diff: edit rather than rewrite, and touch only what the task requires. Every changed line should trace directly back to the request.
-- No drive-by refactors, reformatting or "while I'm here" cleanups. Mention what you spot; don't fix it uninvited.
-- No features, flags, compatibility shims or error handling beyond scope.
-
-### Clean up your own mess
-
-- Remove temp files, scratch scripts, debug logging and experiment code, along with imports, variables and functions that *your* change orphaned — but leave pre-existing dead code alone unless asked.
-- Review the diff before finishing, so the tree holds only the intended change.
-- If you broke something along the way, fix it.
+- Minimal diff: edit rather than rewrite. No drive-by refactors, reformatting, or features, flags, compatibility shims and error handling beyond scope — mention what you spot, don't fix it uninvited.
+- Clean up what *your* change created or orphaned: temp files, scratch scripts, debug logging, experiment code, now-unused imports, variables and functions. Leave pre-existing dead code alone unless asked.
+- Review the diff before finishing. If you broke something along the way, fix it.
 
 ### Verify until success
 
-- Done means every check the repo has passes *and* you watched the behaviour work — not that the code looks right.
-- Verify with whatever the project offers: a test suite where there is one, otherwise run the app, call the endpoint, execute the command. No test framework means verification is manual, not that it's skipped.
+- Done means every check the repo has passes with zero new warnings *and* you watched the behaviour work — not that the code looks right. No test framework means verification is manual (run the app, call the endpoint, execute the command), not skipped.
 - If you can't verify in this environment, say so plainly. Never claim a success you didn't observe.
 - When something fails, find the root cause. Don't retry blindly or bypass checks (`--no-verify`, skipped tests).
 
@@ -167,10 +148,7 @@ Server-side configuration. Never commit a `.env`.
 
 ### Communication
 
-- Be brief: what you did, what's next.
-- Name the blocker when blocked.
-- Disagree with a reason when you disagree, then follow the decision.
-- Report uncertainty honestly. "I didn't test this" is always fine; a false "tests pass" never is.
+Be brief: what you did, what's next. Name the blocker when blocked. Disagree with a reason, then follow the decision. Report uncertainty honestly — "I didn't test this" is always fine; a false "tests pass" never is.
 
 ---
 
@@ -178,8 +156,8 @@ Server-side configuration. Never commit a `.env`.
 
 - [ ] The goal, as stated at the start, is met
 - [ ] Only necessary files changed; diff reviewed
-- [ ] Every check the repo has passes, with no new warnings
-- [ ] New behaviour and fixed bugs covered — by a test where there's a framework, otherwise run and observed, or explicitly flagged unverified
+- [ ] Every check passes, no new warnings
+- [ ] New behaviour and fixed bugs covered, or explicitly flagged unverified
 - [ ] `/doc` updated if anything it describes changed
 - [ ] No temp files, debug output or leftover scaffolding
 
