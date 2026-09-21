@@ -33,11 +33,9 @@
 
 ### Commands
 
-One row per command this project actually has — install, run, build, test, lint, format, type-check, migrations, anything else needed daily. Exact invocations, run from the repository root.
-
 | Task | Command |
 |---|---|
-| `<FILL-IN>` | `<FILL-IN>` |
+| `<FILL-IN: one row per command this project actually has — install, run, build, test, lint, format, type-check, migrations, anything else needed daily>` | `<FILL-IN: the exact invocation, run from the repository root>` |
 
 The lockfile is the source of truth. Install frozen in CI and containers.
 
@@ -98,7 +96,7 @@ Server-side configuration. Never commit a `.env`.
 
 ## 4. Architecture
 
-`<FILL-IN: this project's actual architecture — the layers or modules, what each owns, and the boundaries that must not be crossed. Trace each major flow end to end, entry point → data source, naming the concrete files. Note caching, encryption and other behaviour invisible from a file listing. Link to doc/architecture.md if substantial.>`
+`<FILL-IN: this project's actual architecture — the layers or modules, what each owns, and the boundaries that must not be crossed. Note caching, encryption and other behaviour invisible from a file listing. Link to doc/architecture.md if substantial.>`
 
 - Each layer does its own job and nothing else. Dependencies point inward: outer layers (UI, HTTP, CLI, persistence) depend on inner ones (application, domain), never the reverse.
 - The core stays free of framework and I/O imports, testable with no setup. Cross a boundary through an explicit interface, never by reaching into another layer's internals.
@@ -163,6 +161,6 @@ Be brief: what you did, what's next. Name the blocker when blocked. Disagree wit
 
 ---
 
-## 7. Project-specific notes
+## 7. Notes
 
-`<FILL-IN: gotchas, generated files that must not be hand-edited, forbidden areas, environment quirks, domain vocabulary, external systems.>`
+Empty by default. Add a line only when you had to stop and ask the user something the code couldn't answer — record what they told you, or the constraint you confirmed before acting, so the next agent doesn't ask again. One line each, no history, no rationale.

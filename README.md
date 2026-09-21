@@ -26,12 +26,18 @@ runtime. You copy one markdown file into your project and fill in the blanks.
 | 4. Architecture | Your layers and the boundaries that must not be crossed |
 | 5. Workflow | Think before coding, minimal diff, clean up, verify until it actually works |
 | 6. Definition of done | A checklist the agent has to answer to |
-| 7. Project notes | Gotchas, generated files, forbidden areas |
+| 7. Notes | Answers you had to ask the user for — empty until then |
 
 The bias throughout: **simplicity first, minimal diff, no unverified success
 claims.**
 
 ## Use it
+
+Scaffold the project first — framework init, directory layout, the commands that
+actually build and test it. Every answer in the template is read back out of the
+repo, so on an empty folder there is nothing to fill in and the agent will invent
+it. A skeleton it can inspect is the difference between real house rules and
+plausible-looking ones.
 
 1. Copy [AGENTS.md](AGENTS.md) into the root of your project.
 
