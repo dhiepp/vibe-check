@@ -8,6 +8,7 @@
 - Record what **differs from defaults**. Skip whatever an agent can assume from the stack or read from config in seconds.
 - **Be concise.** Write what you fill in or add at the shortest length that stays unambiguous: one rule per line, no preamble, no rationale a reader doesn't need, nothing another line already says.
 - A rule still holds when the repo doesn't have the thing yet. No `/doc` folder or no test runner doesn't void the guidance — it just means you create it, or use what's available, when the work calls for it.
+- Delete any convention bullet this project's linter, formatter or type-checker already enforces. The tool states it better, and at the moment it matters.
 - Delete a section only when its rule could never apply to this project. Never leave it in place with a note saying it's not applicable here.
 - Then delete this block, leaving the line below in its place.
 
@@ -39,7 +40,7 @@
 
 ### Environment
 
-Server-side configuration. Never commit a `.env`.
+Never commit a `.env`.
 
 | Variable | Purpose / default |
 |---|---|
@@ -97,10 +98,7 @@ Server-side configuration. Never commit a `.env`.
 `<FILL-IN: this project's actual architecture — the layers or modules, what each owns, and the boundaries that must not be crossed. Note caching, encryption and other behaviour invisible from a file listing. Link to doc/architecture.md if substantial.>`
 
 - Each layer does its own job and nothing else. Dependencies point inward: outer layers (UI, HTTP, CLI, persistence) depend on inner ones (application, domain), never the reverse.
-- The core stays free of framework and I/O imports, testable with no setup. Cross a boundary through an explicit interface, never by reaching into another layer's internals.
-- If you can't name the layer a new file belongs to in one sentence, the design isn't ready.
-- Respect SOLID, and consistency over local optimality: follow established patterns, raising one that seems wrong rather than silently diverging.
-- No speculative abstraction — wait for the third concrete use. Three similar lines beat a premature helper.
+- Consistency over local optimality: follow established patterns, raising one that seems wrong rather than silently diverging.
 - Config and secrets come from the environment, never source.
 
 ---
@@ -117,6 +115,7 @@ Server-side configuration. Never commit a `.env`.
 ### Simplicity first and foremost
 
 - The simplest thing that fully solves the problem wins; boring and explicit beats clever and compact. If a simpler approach than the one requested exists, say so before building.
+- No speculative abstraction — wait for the third concrete use. Three similar lines beat a premature helper.
 - If a change grows beyond what was asked, stop and split it. If it came out several times longer than it needed to be, rewrite it — assume a senior reviewer will call it overcomplicated.
 
 ### Change only what you must
@@ -144,23 +143,13 @@ Server-side configuration. Never commit a `.env`.
 
 ### Communication
 
-- Be brief: what you did, what's next. Name the blocker when blocked. Disagree with a reason, then follow the decision.
-- Report uncertainty honestly — "I didn't test this" is always fine; a false "tests pass" never is.
+- Be brief: what you did, what's next.
+- Name the blocker when blocked.
+- Disagree with a reason, then follow the decision.
 
 ---
 
-## 6. Definition of done
-
-- [ ] The goal, as stated at the start, is met
-- [ ] Only necessary files changed; diff reviewed
-- [ ] Every check passes, no new warnings
-- [ ] New behaviour and fixed bugs covered, or explicitly flagged unverified
-- [ ] `/doc` updated if anything it describes changed
-- [ ] No temp files, debug output or leftover scaffolding
-
----
-
-## 7. Notes
+## 6. Notes
 
 `<FILL-IN: at most five lines. Each names a concrete file, command or error, and each is something an agent would otherwise get wrong or have to ask about. Nothing inferable from the config, nothing already covered above, nothing you haven't actually hit. Finding none is the normal outcome — then delete this line and leave the section empty.>`
 
