@@ -37,8 +37,6 @@
 |---|---|
 | `<FILL-IN: one row per command this project actually has — install, run, build, test, lint, format, type-check, migrations, anything else needed daily>` | `<FILL-IN: the exact invocation, run from the repository root>` |
 
-The lockfile is the source of truth. Install frozen in CI and containers.
-
 ### Environment
 
 Server-side configuration. Never commit a `.env`.
@@ -49,7 +47,7 @@ Server-side configuration. Never commit a `.env`.
 
 ### Build & deploy
 
-`<FILL-IN: how this ships — build output, container/packaging, target platform, anything an agent could break by changing build config.>`
+`<FILL-IN: how this ships — build output, container/packaging, target platform.>`
 
 ---
 
@@ -74,12 +72,12 @@ Server-side configuration. Never commit a `.env`.
 ### Structure
 
 - Small functions and files, split along responsibility lines. Early returns over nesting. Immutable by default. No magic numbers or strings.
-- Validate at system boundaries (user input, external APIs, files) and treat what crosses them as hostile: parameterised queries, escaped output, validated schemas, least privilege. Trust internal code and the type system elsewhere. No defensive try/catch, and never swallow an error.
+- Validate at system boundaries (user input, external APIs, files) and treat what crosses them as hostile: parameterised queries, escaped output, validated schemas, least privilege.
 - No dead code, unused imports, or unattributed TODOs.
 
 ### Dependencies and scaffolding
 
-- Standard library first, then what's already here, then something new. A new dependency needs a real need, active maintenance, a compatible license, and a one-line justification in the commit.
+- Standard library first, then what's already here, then something new.
 - Anything the toolchain can generate — UI components, migrations, boilerplate — is created with the official command, never hand-written or copied in.
 - Never hand-edit generated files. Change the source and regenerate.
 
@@ -88,7 +86,7 @@ Server-side configuration. Never commit a `.env`.
 ### Verification
 
 - Every behaviour change ships with proof it works — a test where the repo has a framework, otherwise the thing run and observed.
-- Where tests exist: a bug fix starts with a failing one, names describe behaviour, one concern each, no logic in tests.
+- Where tests exist: reproduce a bug with a failing test before fixing it, names describe behaviour, one concern each, no logic in tests.
 - Prefer real implementations; mock only true external boundaries (network, clock, filesystem).
 - Never weaken or delete a test to make it pass. If a test is wrong, say so.
 
@@ -127,9 +125,9 @@ Server-side configuration. Never commit a `.env`.
 - Clean up what *your* change created or orphaned: temp files, scratch scripts, debug logging, experiment code, now-unused imports, variables and functions. Leave pre-existing dead code alone unless asked.
 - Review the diff before finishing. If you broke something along the way, fix it.
 
-### Verify until success
+### Watch it work
 
-- Done means every check the repo has passes with zero new warnings *and* you watched the behaviour work — not that the code looks right. No test framework means verification is manual (run the app, call the endpoint, execute the command), not skipped.
+- Done means every check the repo has passes with zero new warnings *and* you watched the behaviour work. No test framework means verification is manual (run the app, call the endpoint, execute the command), not skipped.
 - If you can't verify in this environment, say so plainly. Never claim a success you didn't observe.
 - When something fails, find the root cause. Don't retry blindly or bypass checks (`--no-verify`, skipped tests).
 
@@ -146,7 +144,8 @@ Server-side configuration. Never commit a `.env`.
 
 ### Communication
 
-Be brief: what you did, what's next. Name the blocker when blocked. Disagree with a reason, then follow the decision. Report uncertainty honestly — "I didn't test this" is always fine; a false "tests pass" never is.
+- Be brief: what you did, what's next. Name the blocker when blocked. Disagree with a reason, then follow the decision.
+- Report uncertainty honestly — "I didn't test this" is always fine; a false "tests pass" never is.
 
 ---
 
@@ -163,4 +162,6 @@ Be brief: what you did, what's next. Name the blocker when blocked. Disagree wit
 
 ## 7. Notes
 
-Empty by default. Add a line only when you had to stop and ask the user something the code couldn't answer — record what they told you, or the constraint you confirmed before acting, so the next agent doesn't ask again. One line each, no history, no rationale.
+`<FILL-IN: at most five lines. Each names a concrete file, command or error, and each is something an agent would otherwise get wrong or have to ask about. Nothing inferable from the config, nothing already covered above, nothing you haven't actually hit. Finding none is the normal outcome — then delete this line and leave the section empty.>`
+
+Add a line later only when you had to stop and ask the user something the code couldn't answer. Keep only what an agent must see unprompted, and move the rest to `/doc` as it gets crowded.

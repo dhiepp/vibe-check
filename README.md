@@ -24,9 +24,9 @@ runtime. You copy one markdown file into your project and fill in the blanks.
 | 2. Documentation | Where docs live, and the rule to update them in the same change |
 | 3. Coding conventions | Naming over commenting, small functions, boundary validation, no dead code |
 | 4. Architecture | Your layers and the boundaries that must not be crossed |
-| 5. Workflow | Think before coding, minimal diff, clean up, verify until it actually works |
+| 5. Workflow | Think before coding, minimal diff, clean up, watch it actually work |
 | 6. Definition of done | A checklist the agent has to answer to |
-| 7. Notes | Answers you had to ask the user for — empty until then |
+| 7. Notes | What would trip an agent up, plus answers you gave it — kept short |
 
 The bias throughout: **simplicity first, minimal diff, no unverified success
 claims.**
