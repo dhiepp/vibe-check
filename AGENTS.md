@@ -7,7 +7,7 @@
 - Add anything project-specific a future agent would otherwise have to rediscover, as a new section or a clarifying line, and only where the project genuinely needs it.
 - Record what **differs from defaults**. Skip whatever an agent can assume from the stack or read from config in seconds.
 - **Be concise.** Write what you fill in or add at the shortest length that stays unambiguous: one rule per line, no preamble, no rationale a reader doesn't need, nothing another line already says.
-- A rule still holds when the repo doesn't have the thing yet. No `/doc` folder or no test runner doesn't void the guidance — it just means you create it, or use what's available, when the work calls for it.
+- A rule still holds when the repo doesn't have the thing yet. No docs folder or no test runner doesn't void the guidance — it just means you create it, or use what's available, when the work calls for it.
 - Delete any convention bullet this project's linter, formatter or type-checker already enforces. The tool states it better, and at the moment it matters.
 - Delete a section only when its rule could never apply to this project. Never leave it in place with a note saying it's not applicable here.
 - Then delete this block, leaving the line below in its place.
@@ -54,7 +54,7 @@ Never commit a `.env`.
 
 ## 2. Documentation
 
-- All documentation lives in `/doc`; create the folder when the first document is needed. No READMEs, notes, planning, analysis or summary documents elsewhere unless asked.
+- Documentation goes wherever this project already keeps it; if there's no convention yet, use `/docs`. No planning, analysis or summary documents unless asked.
 - Read the relevant docs before touching unfamiliar code, and update them in the same change when behaviour, architecture or commands change. Stale docs are worse than none.
 
 `<FILL-IN: docs an agent must read before working here>`
@@ -66,19 +66,19 @@ Never commit a `.env`.
 ### Naming over commenting
 
 - Names must make the code self-explanatory. If you want to comment *what* something does, rename it instead.
-- One job per function, and the name says which. Booleans read as predicates. No abbreviations beyond the universal ones (`id`, `url`, `db`, `ctx`).
+- One job per function, and the name says which. Booleans read as predicates. Abbreviate only where the language or this repo already does.
 - Comment only when the *why* is non-obvious: a hidden constraint or invariant, a workaround for a specific bug, behaviour that would surprise a reader, the source of a non-trivial formula.
 - Never restate the code, and never reference the current task, ticket or caller — that belongs in the commit message and rots.
 
 ### Structure
 
-- Small functions and files, split along responsibility lines. Early returns over nesting. Immutable by default. No magic numbers or strings.
+- Small functions and files, split along responsibility lines. Early returns over nesting. No magic numbers or strings.
 - Validate at system boundaries (user input, external APIs, files) and treat what crosses them as hostile: parameterised queries, escaped output, validated schemas, least privilege.
 - No dead code, unused imports, or unattributed TODOs.
 
 ### Dependencies and scaffolding
 
-- Standard library first, then what's already here, then something new.
+- Add a dependency only when nothing already in the repo or the standard library does the job. Say why in the commit.
 - Anything the toolchain can generate — UI components, migrations, boilerplate — is created with the official command, never hand-written or copied in.
 - Never hand-edit generated files. Change the source and regenerate.
 
@@ -88,18 +88,16 @@ Never commit a `.env`.
 
 - Every behaviour change ships with proof it works — a test where the repo has a framework, otherwise the thing run and observed.
 - Where tests exist: reproduce a bug with a failing test before fixing it, names describe behaviour, one concern each, no logic in tests.
-- Prefer real implementations; mock only true external boundaries (network, clock, filesystem).
 - Never weaken or delete a test to make it pass. If a test is wrong, say so.
 
 ---
 
 ## 4. Architecture
 
-`<FILL-IN: this project's actual architecture — the layers or modules, what each owns, and the boundaries that must not be crossed. Note caching, encryption and other behaviour invisible from a file listing. Link to doc/architecture.md if substantial.>`
+`<FILL-IN: this project's actual architecture — the layers or modules, what each owns, which way dependencies are allowed to run, and the boundaries that must not be crossed. Note caching, encryption and other behaviour invisible from a file listing. Link to the architecture doc if substantial.>`
 
-- Each layer does its own job and nothing else. Dependencies point inward: outer layers (UI, HTTP, CLI, persistence) depend on inner ones (application, domain), never the reverse.
 - Consistency over local optimality: follow established patterns, raising one that seems wrong rather than silently diverging.
-- Config and secrets come from the environment, never source.
+- Secrets come from the environment, never source. Config that genuinely never varies can be a constant; anything that differs per environment cannot.
 
 ---
 
@@ -153,4 +151,4 @@ Never commit a `.env`.
 
 `<FILL-IN: at most five lines. Each names a concrete file, command or error, and each is something an agent would otherwise get wrong or have to ask about. Nothing inferable from the config, nothing already covered above, nothing you haven't actually hit. Finding none is the normal outcome — then delete this line and leave the section empty.>`
 
-Add a line later only when you had to stop and ask the user something the code couldn't answer. Keep only what an agent must see unprompted, and move the rest to `/doc` as it gets crowded.
+Add a line later only when you had to stop and ask the user something the code couldn't answer. Keep only what an agent must see unprompted, and move the rest into the docs as it gets crowded.

@@ -23,7 +23,7 @@ runtime. You copy one markdown file into your project and fill in the blanks.
 | 1. Project | Stack, layout, the exact commands for build/test/lint, env vars, deploy |
 | 2. Documentation | Where docs live, and the rule to update them in the same change |
 | 3. Coding conventions | Naming over commenting, small functions, boundary validation, no dead code |
-| 4. Architecture | Your layers and the boundaries that must not be crossed |
+| 4. Architecture | Your structure and the boundaries that must not be crossed |
 | 5. Workflow | Think before coding, minimal diff, clean up, watch it actually work |
 | 6. Notes | What would trip an agent up, plus answers you gave it — kept short |
 
@@ -80,7 +80,7 @@ ln -s AGENTS.md CLAUDE.md     # or .cursorrules, .github/copilot-instructions.md
   Short beats thorough.
 - Anything your linter, formatter or type-checker already enforces doesn't need
   a line in there. The tool states it better, and at the moment it matters.
-- A rule still holds when the repo doesn't have the thing yet. No `/doc` folder
+- A rule still holds when the repo doesn't have the thing yet. No docs folder
   means you create one when the work calls for it, not that the rule is void.
 - Stale instructions are worse than none. If a command in there no longer runs,
   fix it in the same change that broke it.
