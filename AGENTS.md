@@ -30,7 +30,16 @@
 
 ### Layout
 
-`<FILL-IN: the organising principle — where source, tests, config and docs live, and how modules are grouped (by layer, by feature, by package). Enough to know where a new file belongs; not a full tree.>`
+```text
+<FILL-IN: a tree of the directories that matter, one per line with a short gloss.
+Two levels is usually enough. Skip anything an agent can guess — node_modules,
+.git, build output. This says where things live; Architecture below says how
+they relate.>
+```
+
+### Architecture
+
+`<FILL-IN: this project's actual architecture — the layers or modules, what each owns, which way dependencies are allowed to run, and the boundaries that must not be crossed. Note caching, encryption and other behaviour invisible from a file listing. Link to the architecture doc if substantial.>`
 
 ### Commands
 
@@ -40,7 +49,7 @@
 
 ### Environment
 
-Never commit a `.env`.
+Secrets come from the environment, never source — never commit a `.env`. Config that genuinely never varies can be a constant; anything that differs per environment cannot.
 
 | Variable | Purpose / default |
 |---|---|
@@ -48,13 +57,13 @@ Never commit a `.env`.
 
 ### Build & deploy
 
-`<FILL-IN: how this ships — build output, container/packaging, target platform.>`
+`<FILL-IN: warnings first — anything irreversible, or that takes the service down. Then numbered steps, one command or action each, from a clean checkout to deployed.>`
 
 ---
 
 ## 2. Documentation
 
-- Documentation goes wherever this project already keeps it; if there's no convention yet, use `/docs`. No planning, analysis or summary documents unless asked.
+- Documentation lives in `<FILL-IN: the path this project keeps docs in — /docs if there's no convention yet>`. No planning, analysis or summary documents unless asked.
 - Read the relevant docs before touching unfamiliar code, and update them in the same change when behaviour, architecture or commands change. Stale docs are worse than none.
 
 `<FILL-IN: docs an agent must read before working here>`
@@ -62,6 +71,8 @@ Never commit a `.env`.
 ---
 
 ## 3. Coding conventions
+
+Consistency beats local optimality: follow the patterns already in the codebase, and raise one that seems wrong rather than silently diverging.
 
 ### Naming over commenting
 
@@ -82,8 +93,6 @@ Never commit a `.env`.
 - Anything the toolchain can generate — UI components, migrations, boilerplate — is created with the official command, never hand-written or copied in.
 - Never hand-edit generated files. Change the source and regenerate.
 
-`<FILL-IN: the generator commands, and which paths are generated>`
-
 ### Verification
 
 - Every behaviour change ships with proof it works — a test where the repo has a framework, otherwise the thing run and observed.
@@ -92,16 +101,7 @@ Never commit a `.env`.
 
 ---
 
-## 4. Architecture
-
-`<FILL-IN: this project's actual architecture — the layers or modules, what each owns, which way dependencies are allowed to run, and the boundaries that must not be crossed. Note caching, encryption and other behaviour invisible from a file listing. Link to the architecture doc if substantial.>`
-
-- Consistency over local optimality: follow established patterns, raising one that seems wrong rather than silently diverging.
-- Secrets come from the environment, never source. Config that genuinely never varies can be a constant; anything that differs per environment cannot.
-
----
-
-## 5. Workflow
+## 4. Workflow
 
 ### Think before coding
 
@@ -147,7 +147,7 @@ Never commit a `.env`.
 
 ---
 
-## 6. Notes
+## 5. Notes
 
 `<FILL-IN: at most five lines. Each names a concrete file, command or error, and each is something an agent would otherwise get wrong or have to ask about. Nothing inferable from the config, nothing already covered above, nothing you haven't actually hit. Finding none is the normal outcome — then delete this line and leave the section empty.>`
 

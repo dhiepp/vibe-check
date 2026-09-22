@@ -20,12 +20,11 @@ runtime. You copy one markdown file into your project and fill in the blanks.
 
 | Section | What it pins down |
 |---|---|
-| 1. Project | Stack, layout, the exact commands for build/test/lint, env vars, deploy |
+| 1. Project | Stack, layout tree, architecture, commands, env vars, deploy steps |
 | 2. Documentation | Where docs live, and the rule to update them in the same change |
 | 3. Coding conventions | Naming over commenting, small functions, boundary validation, no dead code |
-| 4. Architecture | Your structure and the boundaries that must not be crossed |
-| 5. Workflow | Think before coding, minimal diff, clean up, watch it actually work |
-| 6. Notes | What would trip an agent up, plus answers you gave it — kept short |
+| 4. Workflow | Think before coding, minimal diff, clean up, watch it actually work |
+| 5. Notes | What would trip an agent up, plus answers you gave it — kept short |
 
 The bias throughout: **simplicity first, minimal diff, no unverified success
 claims.**
