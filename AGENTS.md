@@ -3,7 +3,6 @@
 **Setup — delete this block once you've done it.** This file ships as a template.
 
 - Fill in every `<FILL-IN>` from what you find in the repo. Ask the user when the code can't answer it; don't guess.
-- Otherwise leave the file intact. Don't reword, reorder or "improve" the rules as written — filling in the blanks is the job.
 - Add anything project-specific a future agent would otherwise have to rediscover, as a new section or a clarifying line, and only where the project genuinely needs it.
 - Record what **differs from defaults**. Skip whatever an agent can assume from the stack or read from config in seconds.
 - **Be concise.** Write what you fill in or add at the shortest length that stays unambiguous: one rule per line, no preamble, no rationale a reader doesn't need, nothing another line already says.
@@ -42,13 +41,13 @@ Generated paths change only through their generator. Agents-away paths are never
 
 ### Commands
 
-`<FILL-IN: a table of every command this project actually has — install, run, build, test, lint, format, type-check, migrations, anything else needed daily — each with its exact invocation, run from the repository root.>`
+`<FILL-IN: a table of the commands needed daily that an agent can't read from config in seconds — install, run, build, test, lint, format, type-check, migrations — each with its exact invocation, run from the repository root.>`
 
 ### Configuration
 
 Secrets come from the environment, never source — never commit a `.env`. Config that genuinely never varies can be a constant; anything that differs per environment cannot.
 
-`<FILL-IN: a table of every env var and required config file the project reads. For each, say what it's for and how to fill it in — where the value comes from, its default, or the command that creates the file.>`
+`<FILL-IN: a table of the env vars and required config files the project reads. For each, say what it's for and how to fill it in — where the value comes from, its default, or the command that creates the file.>`
 
 ### Setup & deploy
 
@@ -84,7 +83,7 @@ Consistency beats local optimality: follow the patterns already in the codebase,
 
 ### Dependencies and scaffolding
 
-- Add a dependency only when nothing already in the repo or the standard library does the job. Say why in the commit.
+- Add a dependency only when nothing already in the repo or the standard library does the job. Say why.
 - Anything the toolchain can generate — UI components, migrations, boilerplate — is created with the official command, never hand-written or copied in.
 
 ### Verification

@@ -42,9 +42,8 @@ plausible-looking ones.
 2. Fill it in. Easiest path is to let the agent do it — open the repo and ask:
 
    > Fill in every `<FILL-IN>` in AGENTS.md from this repo, as briefly as you
-   > can while staying unambiguous. Ask me anything the code can't answer. Leave
-   > the rest of the file as written — don't reword or restructure the rules.
-   > Then delete the setup block at the top.
+   > can while staying unambiguous. Ask me anything the code can't answer. Then
+   > delete the setup block at the top.
 
    Do not let it guess. A wrong test command is worse than an empty row.
 
@@ -54,10 +53,8 @@ plausible-looking ones.
    > only when a change to the repo invalidates something written here. Keep
    > edits short; this file is read in full on every task.
 
-4. Leave the rest intact. Filling in the blanks is the whole job — the standing
-   rules are the point of the template, and an agent rewriting them in its own
-   words is how a house style quietly becomes generic again. Add a section or a
-   clarifying line only when the project genuinely needs one, and drop a section
+4. Tailor it. Add a section or a clarifying
+   line only when the project genuinely needs one, and drop a section
    only when its rule could never apply here — delete it outright rather than
    leaving it in marked "not applicable". Whatever you add, keep it short and
    record what **differs from defaults** — anything the agent can read from your
