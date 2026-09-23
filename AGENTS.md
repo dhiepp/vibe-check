@@ -142,6 +142,6 @@ Consistency beats local optimality: follow the patterns already in the codebase,
 
 ## 5. Notes
 
-`<FILL-IN: at most five lines. Each names a concrete file, command or error, and each is something an agent would otherwise get wrong or have to ask about. Nothing inferable from the config, nothing already covered above, nothing you haven't actually hit. Finding none is the normal outcome — then delete this line and leave the section empty.>`
+`<FILL-IN: at most five lines — if more qualify, keep the ones that matter most. Each is specific to this project and something an agent would otherwise get wrong or have to ask about. Nothing inferable from the config, nothing already covered above, nothing you haven't hit or been told. Finding none is the normal outcome — then delete this line and leave the section empty.>`
 
 Add a line later only when you had to stop and ask the user something the code couldn't answer. Keep only what an agent must see unprompted, and move the rest into the docs as it gets crowded.
