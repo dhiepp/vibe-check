@@ -10,6 +10,7 @@
 - A rule still holds when the repo doesn't have the thing yet. No docs folder or no test runner doesn't void the guidance — it just means you create it, or use what's available, when the work calls for it.
 - Delete any convention bullet this project's linter, formatter or type-checker already enforces. The tool states it better, and at the moment it matters.
 - Delete a section only when its rule could never apply to this project. Never leave it in place with a note saying it's not applicable here.
+- In a monorepo, keep repo-wide rules here and give each package its own short AGENTS.md with its Layout, Commands and Configuration. The nearest file wins.
 - Then delete this block, leaving the line below in its place.
 
 > **Keep this file current, not busy.** It is meant to sit still. Edit it only when a change to the repo invalidates something written here. Keep edits short; this file is read in full on every task.
@@ -18,15 +19,7 @@
 
 ## 1. Project
 
-| Item | Value |
-|---|---|
-| Name | `<FILL-IN>` |
-| Purpose | `<FILL-IN>` |
-| Language(s) | `<FILL-IN>` |
-| Framework(s) | `<FILL-IN>` |
-| Runtime / toolchain | `<FILL-IN>` |
-| Datastore | `<FILL-IN>` |
-| Package manager | `<FILL-IN>` |
+`<FILL-IN: a table summarising the project — name, one-line purpose, language(s), framework(s), runtime and toolchain, datastore, package manager, and anything else that defines the stack.>`
 
 ### Layout
 
@@ -37,27 +30,29 @@ Two levels is usually enough. Skip anything an agent can guess — node_modules,
 they relate.>
 ```
 
+### Do not touch
+
+Generated paths change only through their generator. Agents-away paths are never edited by an agent — propose the change and let the owner make it.
+
+`<FILL-IN: a table of the paths an agent wouldn't recognise as off-limits — codegen output, vendored code, anything the user reserves. Mark each generated (with its regenerate command) or agents-away (with its owner).>`
+
 ### Architecture
 
 `<FILL-IN: this project's actual architecture — the layers or modules, what each owns, which way dependencies are allowed to run, and the boundaries that must not be crossed. Note caching, encryption and other behaviour invisible from a file listing. Link to the architecture doc if substantial.>`
 
 ### Commands
 
-| Task | Command |
-|---|---|
-| `<FILL-IN: one row per command this project actually has — install, run, build, test, lint, format, type-check, migrations, anything else needed daily>` | `<FILL-IN: the exact invocation, run from the repository root>` |
+`<FILL-IN: a table of every command this project actually has — install, run, build, test, lint, format, type-check, migrations, anything else needed daily — each with its exact invocation, run from the repository root.>`
 
-### Environment
+### Configuration
 
 Secrets come from the environment, never source — never commit a `.env`. Config that genuinely never varies can be a constant; anything that differs per environment cannot.
 
-| Variable | Purpose / default |
-|---|---|
-| `<FILL-IN>` | `<FILL-IN>` |
+`<FILL-IN: a table of every env var and required config file the project reads. For each, say what it's for and how to fill it in — where the value comes from, its default, or the command that creates the file.>`
 
-### Build & deploy
+### Setup & deploy
 
-`<FILL-IN: warnings first — anything irreversible, or that takes the service down. Then numbered steps, one command or action each, from a clean checkout to deployed.>`
+`<FILL-IN: warnings first — anything irreversible, or that takes the service down. Then numbered steps, one command or action each, from a clean checkout — runtime, local services, seed data, access — to running locally, then to deployed.>`
 
 ---
 
@@ -91,7 +86,6 @@ Consistency beats local optimality: follow the patterns already in the codebase,
 
 - Add a dependency only when nothing already in the repo or the standard library does the job. Say why in the commit.
 - Anything the toolchain can generate — UI components, migrations, boilerplate — is created with the official command, never hand-written or copied in.
-- Never hand-edit generated files. Change the source and regenerate.
 
 ### Verification
 

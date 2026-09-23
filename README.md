@@ -20,7 +20,7 @@ runtime. You copy one markdown file into your project and fill in the blanks.
 
 | Section | What it pins down |
 |---|---|
-| 1. Project | Stack, layout tree, architecture, commands, env vars, deploy steps |
+| 1. Project | Stack, layout tree, do-not-touch paths, architecture, commands, configuration, setup & deploy steps |
 | 2. Documentation | Where docs live, and the rule to update them in the same change |
 | 3. Coding conventions | Naming over commenting, small functions, boundary validation, no dead code |
 | 4. Workflow | Think before coding, minimal diff, clean up, watch it actually work |
