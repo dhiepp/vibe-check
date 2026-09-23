@@ -37,11 +37,11 @@ Generated paths change only through their generator. Agents-away paths are never
 
 ### Architecture
 
-`<FILL-IN: this project's actual architecture — the layers or modules, what each owns, which way dependencies are allowed to run, and the boundaries that must not be crossed. Note caching, encryption and other behaviour invisible from a file listing. Link to the architecture doc if substantial.>`
+`<FILL-IN: this project's actual architecture — the layers or modules, what each owns, which way dependencies are allowed to run, and the boundaries that must not be crossed. Note caching, encryption, error reporting, logging and other behaviour invisible from a file listing. Link to the architecture doc if substantial.>`
 
 ### Commands
 
-`<FILL-IN: a table of the commands needed daily that an agent can't read from config in seconds — install, run, build, test, lint, format, type-check, migrations — each with its exact invocation, run from the repository root.>`
+`<FILL-IN: a table of the commands needed daily — install, run, build, test, lint, format, type-check, migrations — each with its exact invocation, run from the repository root.>`
 
 ### Configuration
 
@@ -51,7 +51,7 @@ Secrets come from the environment, never source — never commit a `.env`. Confi
 
 ### Setup & deploy
 
-`<FILL-IN: warnings first — anything irreversible, or that takes the service down. Then numbered steps, one command or action each, from a clean checkout — runtime, local services, seed data, access — to running locally, then to deployed.>`
+`<FILL-IN: warnings first — anything irreversible, or that takes the service down. Then numbered steps, one command or action each, from a clean checkout — runtime, local services, seed data, access — to running locally, ending with the quick check that proves it works, then to deployed.>`
 
 ---
 
@@ -79,6 +79,7 @@ Consistency beats local optimality: follow the patterns already in the codebase,
 
 - Small functions and files, split along responsibility lines. Early returns over nesting. No magic numbers or strings.
 - Validate at system boundaries (user input, external APIs, files) and treat what crosses them as hostile: parameterised queries, escaped output, validated schemas, least privilege.
+- Never swallow an error. Where you handle one, log enough context to diagnose it later.
 - No dead code, unused imports, or unattributed TODOs.
 
 ### Dependencies and scaffolding
@@ -86,9 +87,8 @@ Consistency beats local optimality: follow the patterns already in the codebase,
 - Add a dependency only when nothing already in the repo or the standard library does the job. Say why.
 - Anything the toolchain can generate — UI components, migrations, boilerplate — is created with the official command, never hand-written or copied in.
 
-### Verification
+### Testing
 
-- Every behaviour change ships with proof it works — a test where the repo has a framework, otherwise the thing run and observed.
 - Where tests exist: reproduce a bug with a failing test before fixing it, names describe behaviour, one concern each, no logic in tests.
 - Never weaken or delete a test to make it pass. If a test is wrong, say so.
 
@@ -117,7 +117,7 @@ Consistency beats local optimality: follow the patterns already in the codebase,
 
 ### Watch it work
 
-- Done means every check the repo has passes with zero new warnings *and* you watched the behaviour work. No test framework means verification is manual (run the app, call the endpoint, execute the command), not skipped.
+- Done means every check the repo has passes with zero new warnings *and* you watched the behaviour work. No test framework means verification is manual, not skipped.
 - If you can't verify in this environment, say so plainly. Never claim a success you didn't observe.
 - When something fails, find the root cause. Don't retry blindly or bypass checks (`--no-verify`, skipped tests).
 
