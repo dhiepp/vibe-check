@@ -31,9 +31,9 @@ they relate.>
 
 ### Do not touch
 
-Generated paths change only through their generator. Agents-away paths are never edited by an agent — propose the change and let the owner make it.
+Never edit these paths — propose the change and let the owner make it.
 
-`<FILL-IN: a table of the paths an agent wouldn't recognise as off-limits — codegen output, vendored code, anything the user reserves. Mark each generated (with its regenerate command) or agents-away (with its owner).>`
+`<FILL-IN: a table of the paths an agent must not edit — vendored code, anything the user reserves — each with its owner.>`
 
 ### Architecture
 
@@ -85,7 +85,7 @@ Consistency beats local optimality: follow the patterns already in the codebase,
 ### Dependencies and scaffolding
 
 - Add a dependency only when nothing already in the repo or the standard library does the job. Say why.
-- Anything the toolchain can generate — UI components, migrations, boilerplate — is created with the official command, never hand-written or copied in.
+- Anything the toolchain can generate — UI components, migrations, boilerplate, codegen — is created with the official command, never hand-written or copied in. Never hand-edit output that's rebuilt from a source; change the source and regenerate.
 
 ### Testing
 
