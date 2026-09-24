@@ -2,85 +2,76 @@
 
 > Vibe check for vibe coders who care about code quality.
 
-A single-file `AGENTS.md` template: the house rules you hand your coding agent
-so that what it ships still passes a senior review.
+An opinionated `AGENTS.md` template that tells a coding agent how to work in
+your repo: keep changes small and code simple, follow the project's conventions,
+and verify the result before calling it done.
 
 ## What it is
 
-Coding agents are fast and agreeable. Left without instructions they invent
-conventions, bolt on error handling nobody asked for, write four files where one
-would do, and report success they never observed. `vibe-check` is the antidote —
-one file, read in full on every task, that tells the agent how *this* repo works
-and what "done" actually means.
+Left to their defaults, coding agents tend to invent their own conventions, add
+more than was asked for, or report success before checking. This template lists
+the conventions and workflow you'd otherwise keep repeating in prompts, so the
+agent reads them at the start of every task.
 
-It is a **template**, not a framework. Nothing to install, no dependency, no
-runtime. You copy one markdown file into your project and fill in the blanks.
+It's one markdown file with nothing to install. The rules lean toward simplicity
+and small diffs, which won't suit every project or team, so change whatever
+doesn't fit.
 
 ## What's inside
 
-| Section | What it pins down |
+| Section | What it covers |
 |---|---|
 | 1. Project | Stack, layout tree, do-not-touch paths, architecture, commands, configuration, setup & deploy steps |
-| 2. Documentation | Where docs live, and the rule to update them in the same change |
+| 2. Documentation | Where docs live, and keeping them updated alongside the code |
 | 3. Coding conventions | Naming over commenting, small functions, boundary validation, no dead code |
 | 4. Workflow | Think before coding, minimal diff, clean up, watch it actually work |
-| 5. Notes | What would trip an agent up, plus answers you gave it — kept short |
+| 5. Notes | Project-specific gotchas, kept short |
 
-The bias throughout: **simplicity first, minimal diff, no unverified success
-claims.**
+## Usage
 
-## Use it
+It works best on a scaffolded project — framework initialised, directory layout
+in place, build and test commands working. The template is filled in from what's
+in the repo, so on an empty folder the agent has little to go on and tends to
+make things up.
 
-Scaffold the project first — framework init, directory layout, the commands that
-actually build and test it. Every answer in the template is read back out of the
-repo, so on an empty folder there is nothing to fill in and the agent will invent
-it. A skeleton it can inspect is the difference between real house rules and
-plausible-looking ones.
+1. Copy [AGENTS.md](AGENTS.md) into the root of the project.
 
-1. Copy [AGENTS.md](AGENTS.md) into the root of your project.
-
-2. Fill it in. Easiest path is to let the agent do it — open the repo and ask:
+2. Ask the agent to fill it in, for example:
 
    > Fill in every `<FILL-IN>` in AGENTS.md from this repo, as briefly as you
    > can while staying unambiguous. Ask me anything the code can't answer. Then
    > delete the setup block at the top.
 
-   Do not let it guess. A wrong test command is worse than an empty row.
+   Review what it wrote. A wrong test command does more harm than an empty row.
 
-3. Delete the setup block once done, and keep the line below it:
+3. Once filled in, the setup block is deleted and this line stays:
 
    > **Keep this file current, not busy.** It is meant to sit still. Edit it
    > only when a change to the repo invalidates something written here. Keep
    > edits short; this file is read in full on every task.
 
-4. Tailor it. Add a section or a clarifying
-   line only when the project genuinely needs one, and drop a section
-   only when its rule could never apply here — delete it outright rather than
-   leaving it in marked "not applicable". Whatever you add, keep it short and
-   record what **differs from defaults** — anything the agent can read from your
-   config in seconds is noise that costs you context on every task.
+4. Tailor it. Add a section or a clarifying line when the project needs one, and
+   delete sections that will never apply rather than marking them "not
+   applicable". Record only what differs from defaults — anything the agent can
+   read from config in seconds mostly just costs context.
 
 ## Agent compatibility
 
-`AGENTS.md` in the repo root is the cross-tool convention, picked up by most
-current coding agents. If yours reads a different filename, point it at this one
-rather than keeping two copies that drift:
+`AGENTS.md` in the repo root is read by many coding agents. If yours looks for a
+different filename, symlink it rather than keeping two copies in sync:
 
 ```bash
 ln -s AGENTS.md CLAUDE.md     # or .cursorrules, .github/copilot-instructions.md, ...
 ```
 
-## Keeping it honest
+## Tips
 
-- One file, read on every task — every line you add is paid for in context.
-  Short beats thorough.
-- Anything your linter, formatter or type-checker already enforces doesn't need
-  a line in there. The tool states it better, and at the moment it matters.
-- A rule still holds when the repo doesn't have the thing yet. No docs folder
-  means you create one when the work calls for it, not that the rule is void.
-- Stale instructions are worse than none. If a command in there no longer runs,
-  fix it in the same change that broke it.
-- It is a standing contract, not a logbook. It changes when the repo invalidates
-  something in it, and at no other time — progress notes, decision history and
-  "what I did" belong in commit messages. An agent that appends to it every task
-  is turning your house rules into scrollback.
+- The file is read on every task, so every line costs context. Keep it short.
+- Rules a linter, formatter or type-checker already enforces don't need to be in
+  there — the tool catches them anyway.
+- A rule still applies when the repo doesn't have the thing yet. No docs folder
+  just means creating one when it's needed.
+- Out-of-date instructions can mislead an agent more than missing ones. Fix them
+  in the same change that makes them stale.
+- Treat it as a reference, not a log. Progress notes and decision history belong
+  in commit messages, or agents tend to keep appending to it.
