@@ -23,7 +23,7 @@ doesn't fit.
 |---|---|
 | 1. Project | Stack, layout tree, do-not-touch paths, architecture, commands, configuration, setup & deploy steps |
 | 2. Documentation | Where docs live, and keeping them updated alongside the code |
-| 3. Coding conventions | Naming over commenting, small functions, boundary validation, no dead code |
+| 3. Coding conventions | Naming over commenting, small functions, boundary validation, testing |
 | 4. Workflow | Think before coding, minimal diff, clean up, watch it actually work |
 | 5. Notes | Project-specific gotchas, kept short |
 

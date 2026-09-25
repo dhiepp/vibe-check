@@ -80,16 +80,15 @@ Consistency beats local optimality: follow the patterns already in the codebase,
 - Small functions and files, split along responsibility lines. Early returns over nesting. No magic numbers or strings.
 - Validate at system boundaries (user input, external APIs, files) and treat what crosses them as hostile: parameterised queries, escaped output, validated schemas, least privilege.
 - Never swallow an error. Where you handle one, log enough context to diagnose it later.
-- No dead code, unused imports, or unattributed TODOs.
 
 ### Dependencies and scaffolding
 
-- Add a dependency only when nothing already in the repo or the standard library does the job. Say why.
+- Add a dependency only when nothing already in the repo or the standard library does the job. Say why, and confirm before adding or removing one.
 - Anything the toolchain can generate — UI components, migrations, boilerplate, codegen — is created with the official command, never hand-written or copied in. Never hand-edit output that's rebuilt from a source; change the source and regenerate.
 
 ### Testing
 
-- Where tests exist: reproduce a bug with a failing test before fixing it, names describe behaviour, one concern each, no logic in tests.
+- Where tests exist: new behaviour ships with a test, a bug is reproduced with a failing test before fixing it, names describe behaviour, one concern each, expected values written out, no conditionals.
 - Never weaken or delete a test to make it pass. If a test is wrong, say so.
 
 ---
@@ -117,7 +116,7 @@ Consistency beats local optimality: follow the patterns already in the codebase,
 
 ### Watch it work
 
-- Done means every check the repo has passes with zero new warnings *and* you watched the behaviour work. No test framework means verification is manual, not skipped.
+- Done means every check required by the repo passes with zero new warnings *and* you watched the behaviour work. No test framework means verification is manual, not skipped.
 - If you can't verify in this environment, say so plainly. Never claim a success you didn't observe.
 - When something fails, find the root cause. Don't retry blindly or bypass checks (`--no-verify`, skipped tests).
 
@@ -129,7 +128,7 @@ Consistency beats local optimality: follow the patterns already in the codebase,
 ### Blast radius
 
 - Local reversible work — editing, testing, reading logs — proceeds freely.
-- Confirm first for anything destructive, hard to reverse, or visible to others: deleting files or branches, dropping data, migrations against shared databases, sending messages, opening or closing PRs, touching CI/CD or permissions, adding or removing dependencies.
+- Confirm first for anything destructive, hard to reverse, or visible to others: deleting files or branches, dropping data, migrations against shared databases, sending messages, opening or closing PRs, touching CI/CD or permissions.
 - Unexpected files or branches may be work in progress. Investigate before removing, and prefer moving aside to deleting.
 
 ### Communication
