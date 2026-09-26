@@ -83,12 +83,15 @@ Consistency beats local optimality: follow the patterns already in the codebase,
 
 ### Dependencies and scaffolding
 
-- Add a dependency only when nothing already in the repo or the standard library does the job. Say why, and confirm before adding or removing one.
+- Use a well-maintained library when it does the job better than hand-written code; don't reimplement a solved problem just to avoid a dependency. Prefer one the repo already has.
+- Install it with the package manager and say what it's for. Unsure whether it's warranted? Ask — don't silently go without. Once it's in use, keep it; confirm before removing an existing one.
 - Anything the toolchain can generate — UI components, migrations, boilerplate, codegen — is created with the official command, never hand-written or copied in. Never hand-edit output that's rebuilt from a source; change the source and regenerate.
 
 ### Testing
 
-- Where tests exist: new behaviour ships with a test, a bug is reproduced with a failing test before fixing it, names describe behaviour, one concern each, expected values written out, no conditionals.
+- Add a test where it pays off: non-trivial logic, behaviour other code relies on, or a bug likely to come back. Trivial, cosmetic or exploratory changes don't need one.
+- When a bug earns a test, write it failing before the fix.
+- Each test covers one concern, is named for the behaviour it checks, spells out expected values and has no conditionals.
 - Never weaken or delete a test to make it pass. If a test is wrong, say so.
 
 ---
@@ -141,6 +144,6 @@ Consistency beats local optimality: follow the patterns already in the codebase,
 
 ## 5. Notes
 
-`<FILL-IN: at most five lines — if more qualify, keep the ones that matter most. Each is specific to this project and something an agent would otherwise get wrong or have to ask about. Nothing inferable from the config, nothing already covered above, nothing you haven't hit or been told. Finding none is the normal outcome — then delete this line and leave the section empty.>`
+`<FILL-IN: short lines, each specific to this project and something an agent would otherwise get wrong or have to ask about. Nothing inferable from the config, nothing already covered above, nothing you haven't hit or been told. Finding none is the normal outcome — then delete this line and leave the section empty.>`
 
 Add a line later only when you had to stop and ask the user something the code couldn't answer. Keep only what an agent must see unprompted, and move the rest into the docs as it gets crowded.
